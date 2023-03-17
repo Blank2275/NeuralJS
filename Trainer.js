@@ -149,8 +149,30 @@ class BackpropTrainer {
         this.network = network;
         this.lossFunction = lossFunction;
     }
-    backwardPropogateError(expected) {
-        
+    backwardPropogateError(expected, actual) {
+        for (let i = this.network.layers.length - 1; i >= 0; i--) {
+            let layers = this.network.layers;
+            let layer = layers[i];
+            let errors = [];
+
+            if (i != layers.n - 1) {
+                for (let j = 0; j < layer.n; j++) {
+                    let error = 0;
+
+                    for (let node = 0; node < layers[i].n; node++) {
+                        error += layer.weights[node][j] * layer.nodes[node];
+                    }
+                    errors.push(error);
+                }
+            } else {
+                for (let j = 0; j < layer.n; j++) {
+                    errors.push(this.lossFunction(expected[j], actual[j]));
+                }
+            }
+            for (let j = 0; j < layer.n; j++) {
+                layer.deltas[j] = errors[j] * layer.activation.derivative(actual[j]);
+            }
+        }
     }
 }
 

@@ -4,6 +4,10 @@ class Layer{
         this.activation = activation;
         this.weights = [];
         this.biases = [];
+        this.deltas = [];
+        for(let i = 0; i < n; i++){
+            this.deltas.push(0);
+        }
     }
     
     setRandomWeights(past){
