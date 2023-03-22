@@ -13,7 +13,7 @@ const { Layer, Network } = require("./Network.js");
 const { ActivationRelu, ActivationSigmoid } = require("./Activations.js");
 const { MSELoss } = require("./LossFunctions.js");
 const { DataSet } = require("./Dataset.js");
-const { EvoTrainer, BackpropTrainer } = require("./Trainer.js");
+const { EvoTrainer } = require("./Trainer.js");
 const { Saver } = require("./Saver.js");
 
 let layers = [
