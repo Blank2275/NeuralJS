@@ -20,7 +20,7 @@ let layers = [
     new Layer(2, new ActivationRelu()),
     new Layer(8, new ActivationRelu()),
     new Layer(4, new ActivationRelu()),
-    new Layer(1, new ActivationRelu())
+    new Layer(1, new ActivationSigmoid())
 ];
 
 let network = new Network(layers);
