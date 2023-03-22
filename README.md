@@ -9,6 +9,13 @@ Models are made with the Network constructor with the argument with an array of 
 output layer. Layer takes two arguments: the number of neurons (n) and the activation function (activation) which is a constructor you instantiate.
 
 ```js
+const { Layer, Network } = require("./Network.js");
+const { ActivationRelu, ActivationSigmoid } = require("./Activations.js");
+const { MSELoss } = require("./LossFunctions.js");
+const { DataSet } = require("./Dataset.js");
+const { EvoTrainer, BackpropTrainer } = require("./Trainer.js");
+const { Saver } = require("./Saver.js");
+
 let layers = [
     new Layer(2, new ActivationRelu()),
     new Layer(8, new ActivationRelu()),
@@ -21,11 +28,11 @@ let network = new Network(layers);
 let X = [];
 let y = [];
 let nSamples = 1000;
-for(let i = 0; i < nSamples; i++){
-  let xPos = Math.random() * 2;
-  let yPos = Math.random() * 2;
-  X.push([xPos, yPos]);
-  y.push(xPos > yPos ? 0 : 1); // 0 is below y=x, 1 is above
+for (let i = 0; i < nSamples; i++) {
+    let xPos = Math.random() * 2;
+    let yPos = Math.random() * 2;
+    X.push([xPos, yPos]);
+    y.push([xPos > yPos ? 0 : 1]); // 0 is below y=x, 1 is above
 }
 
 let dataset = new DataSet(X, y);
@@ -35,12 +42,12 @@ let best = trainer.train(200, dataset); // epochs, dataset
 
 //test model
 
-for(let i = 0; i < numTests; i++){
-  let xPos = Math.random() * 2;
-  let yPos = Math.random() * 2;
-  let res = best.evaluate([xPos, yPos]);
-  let resultString = res > 0.5 ? "above y=x" : "below y=x";
-  console.log(`${xPos}, ${yPos}: ${resultString}`);
+let numTests = 10;
+for (let i = 0; i < numTests; i++) {
+    let xPos = Math.random() * 2;
+    let yPos = Math.random() * 2;
+    let res = best.evaluate([xPos, yPos]);
+    let resultString = res > 0.5 ? "above y=x" : "below y=x";
+    console.log(`${xPos}, ${yPos}: ${resultString}`);
 }
-
 ```
