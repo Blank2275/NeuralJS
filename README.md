@@ -9,12 +9,12 @@ Models are made with the Network constructor with the argument with an array of 
 output layer. Layer takes two arguments: the number of neurons (n) and the activation function (activation) which is a constructor you instantiate.
 
 ```js
-const { Layer, Network } = require("./Network.js");
-const { ActivationRelu, ActivationSigmoid } = require("./Activations.js");
-const { MSELoss } = require("./LossFunctions.js");
-const { DataSet } = require("./Dataset.js");
-const { EvoTrainer } = require("./Trainer.js");
-const { Saver } = require("./Saver.js");
+const { Layer, Network } = require("./src/Network.js");
+const { ActivationRelu, ActivationSigmoid } = require("./src/Activations.js");
+const { MSELoss } = require("./src/LossFunctions.js");
+const { DataSet } = require("./src/Dataset.js");
+const { EvoTrainer } = require("./src/Trainer.js");
+const { Saver } = require("./src/Saver.js");
 
 let layers = [
     new Layer(2, new ActivationRelu()),
