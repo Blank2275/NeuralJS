@@ -51,3 +51,6 @@ for (let i = 0; i < numTests; i++) {
     console.log(`${xPos}, ${yPos}: ${resultString}`);
 }
 ```
+
+## More Examples
+Clustering example at https://replit.com/@connorfrancis/NeuralJS-Clustering
